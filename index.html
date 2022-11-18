@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <div class="title-logo">
+                <img src="images/bat.png" alt="">
+            </div>
+            <div class="search-box">
+                <input type="text">
+                <button class="search-btn">
+                    <img src="images/SearchIcon.png" alt="">
+                </button>
+            </div>
+            <div class="nav-btn" id="js-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="header-nav">
+                <ul>
+                    <li><a href="#">tag</a></li>
+                    <li><a href="#">tag</a></li>
+                    <li><a href="#">tag</a></li>
+                    <li><a href="#">tag</a></li>
+                    <li><a href="#">tag</a></li>
+                    <li><a href="#">tag</a></li>
+                    <li><a href="#">tag</a></li>
+                    <li><a href="#">tag</a></li>
+                    <li><a href="#">tag</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <img src="images/cloud.png" class="top-img">
+
+    <main class="main">
+        <div class="left-nav">
+            <tr>
+                <th><p>最新情報</p></th>
+                <td><a href="#">貨物列車</a></td>
+                <td><a href="#">貨物列車</a></td>
+                <td><a href="#">貨物列車</a></td>
+                <th><p>おすすめ</p></th>
+                <td><a href="#">貨物列車</a></td>
+                <td><a href="#">貨物列車</a></td>
+                <td><a href="#">貨物列車</a></td>
+            </tr>
+            
+        </div>
+        <div class="middle">
+            <div class="image">
+                <img src="images/WhitePage.png" alt="">
+            </div>
+            <div class="image">
+                <img src="images/WhitePage.png" alt="">
+            </div>
+            <div class="image">
+                <img src="images/WhitePage.png" alt="">
+            </div>
+            <div class="image">
+                <img src="images/WhitePage.png" alt="">
+            </div>
+            <div class="image">
+                <img src="images/WhitePage.png" alt="">
+            </div>
+            <div class="image">
+                <img src="images/WhitePage.png" alt="">
+            </div>
+        </div>
+        <div class="right-nav">
+            <tr>
+                <th><p>最新情報</p></th>
+                <td><a href="#">貨物列車</a></td>
+                <td><a href="#">貨物列車</a></td>
+                <td><a href="#">貨物列車</a></td>
+                <th><p>おすすめ</p></th>
+                <td><a href="#">貨物列車</a></td>
+                <td><a href="#">貨物列車</a></td>
+                <td><a href="#">貨物列車</a></td>
+            </tr>
+        </div>
+    </main>
+    
+    <footer>
+        <nav>
+            <ul>
+                <div class="nav-line">
+                    <li><a href="#">りんご</a></li>
+                </div>
+                <div class="nav-line">
+                    <li><a href="#">最新情報</a></li>
+                    <li><a href="#">おすすめ</a></li>
+                    <li><a href="#">最新情報</a></li>
+                </div>
+                <div class="nav-line">
+                    <li><a href="#">おすすめ</a></li>
+                </div>
+                <div class="nav-line">
+                    <li><a href="#">おすすめ</a></li>
+                    <li><a href="#">おすすめ</a></li>
+                    <li><a href="#">おすすめ</a></li>
+                </div>
+                <div class="nav-line">
+                    <li><a href="#">おすすめ</a></li>
+                </div>
+            </ul>
+        </nav>
+    </footer>
+    <div class="img-wrap">
+        <a href="https://www.bing.com/images/search?q=%e8%9d%99%e8%9d%a0%e3%80%80%e3%82%a4%e3%83%a9%e3%82%b9%e3%83%88&form=HDRSC3&first=1&tsc=ImageHoverTitle" class="jama-btn">
+            <img src="images\bat.png">
+        </a>
+        <button class="exit-btn">
+            <img src="images/batumark.png">
+        </button>
+        <a href="https://www.bing.com/images/search?q=%e8%9d%99%e8%9d%a0%e3%80%80%e3%82%a4%e3%83%a9%e3%82%b9%e3%83%88&form=HDRSC3&first=1&tsc=ImageHoverTitle" class="jama-btn">
+            <img src="images\bat.png">
+        </a>
+    </div>
+    <script>
+        let $button=document.querySelector('#js-btn')
+        let $nav=document.querySelector('.header-nav')
+        let itemsImages=document.querySelector('.img-wrap')
+        let exitBtn=document.querySelector('.exit-btn')
+        exitBtn.addEventListener('click',(e)=>{
+            // itemsImages.style.opacity="0"
+            itemsImages.classList.add('not-show')
+        })
+
+        $button.addEventListener('click',(e)=>{
+            $nav.classList.toggle('.active')
+            if($nav.classList.contains('active')){
+                $nav.classList.remove('active')
+            }else{
+                $nav.classList.add('active')
+            }
+        })
+        let setItemActive=(entries)=>{
+            entries.forEach((entry)=>{
+                if(entry.isIntersecting){
+                    entry.target.classList.add('is-active')
+                }else{
+                    entry.target.classList.remove('is-active')
+                }
+            })
+        }
+        let options={
+            rootMargin:"0px",
+            threshold:0
+        }
+        let observer=new IntersectionObserver(setItemActive,options)
+        observer.observe(itemsImages)
+    </script>
+</body>
+</html>
